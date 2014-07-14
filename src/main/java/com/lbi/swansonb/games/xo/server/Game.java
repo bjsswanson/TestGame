@@ -5,18 +5,18 @@ import java.io.IOException;
 
 public class Game {
 
-	private static final String IT_IS_YOUR_TURN = "It is your turn.";
-	private static final String YOU_ARE_NOW_IN_A_GAME = "You are now in a game.";
-	private static final String IS_NOT_YOUR_TURN = "Is not your turn. Please wait.";
-	private static final String PLAYER_1_DISCONNECTED = "Player 1 Disconnected.";
-	private static final String PLAYER_2_DISCONNECTED = "Player 2 Disconnected.";
-	private static final String GAME_OVER = "Game Over.";
-	private static final String INVALID_MOVE = "Invalid move. Try again";
-	private static final String POSITION_TAKEN = "Position taken. Try again.";
-	private static final String PLEASE_WAIT = "Please wait. Other player is making a move";
-	private static final String GAME_TIE = "Game tied.";
-	private static final String GAME_WIN = "You Win!";
-	private static final String GAME_LOST = "You Lost!";
+	public static final String IT_IS_YOUR_TURN = "It is your turn.";
+	public static final String YOU_ARE_NOW_IN_A_GAME = "You are now in a game.";
+	public static final String IS_NOT_YOUR_TURN = "Is not your turn. Please wait.";
+	public static final String PLAYER_1_DISCONNECTED = "Player 1 Disconnected.";
+	public static final String PLAYER_2_DISCONNECTED = "Player 2 Disconnected.";
+	public static final String GAME_OVER = "Game Over.";
+	public static final String INVALID_MOVE = "Invalid move. Try again";
+	public static final String POSITION_TAKEN = "Position taken. Try again.";
+	public static final String PLEASE_WAIT = "Please wait. Other player is making a move";
+	public static final String GAME_TIE = "Game tied.";
+	public static final String GAME_WIN = "You Win!";
+	public static final String GAME_LOST = "You Lost!";
 
 	private Session player1;
 	private Session player2;
