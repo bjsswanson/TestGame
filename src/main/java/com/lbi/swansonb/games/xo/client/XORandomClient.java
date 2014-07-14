@@ -22,7 +22,6 @@ public class XORandomClient {
         this.session = session;
 		this.random = new Random();
 		System.out.println("Connected to Server.");
-		sendMessage(session, "Hi!");
     }
 
 	 @OnMessage

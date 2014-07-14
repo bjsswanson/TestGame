@@ -17,6 +17,7 @@ public class Game {
 	public static final String GAME_TIE = "Game tied.";
 	public static final String GAME_WIN = "You Win!";
 	public static final String GAME_LOST = "You Lost!";
+	private static final String CLOSING_CONNECTIONS = "Closing connections.";
 
 	private Session player1;
 	private Session player2;
@@ -55,7 +56,7 @@ public class Game {
 					return tieGame();
 				} else {
 					turn = getOtherPlayer();
-					sendMessage(getOtherPlayer(), IT_IS_YOUR_TURN);
+					sendMessage(turn, IT_IS_YOUR_TURN);
 					return PLEASE_WAIT;
 				}
 			}
@@ -65,20 +66,21 @@ public class Game {
 	}
 
 	private String winGame() {
-		kickPlayer(turn, GAME_WIN);
-		kickPlayer(getOtherPlayer(), GAME_LOST);
+		sendMessage(turn, GAME_WIN);
+		sendMessage(getOtherPlayer(), GAME_LOST);
 		return GAME_OVER;
 	}
 
 	private String tieGame(){
-		kickPlayer(player1, GAME_TIE);
-		kickPlayer(player2, GAME_TIE);
+		sendMessage(player1, GAME_TIE);
+		sendMessage(player2, GAME_TIE);
 		return GAME_OVER;
 	}
 
 	private String disconnected() {
-		kickPlayer(player1, PLAYER_2_DISCONNECTED);
-		kickPlayer(player2, PLAYER_1_DISCONNECTED);
+		sendMessage(player1, PLAYER_2_DISCONNECTED);
+		sendMessage(player2, PLAYER_1_DISCONNECTED);
+		turnCounter = 9;
 		return GAME_OVER;
 	}
 
@@ -98,6 +100,11 @@ public class Game {
 		}
 	}
 
+	public void kickPlayers() {
+		kickPlayer(player1, CLOSING_CONNECTIONS);
+		kickPlayer(player2, CLOSING_CONNECTIONS);
+	}
+
 	private void kickPlayer(Session session, String message){
 		try {
 			if(session != null && session.isOpen()){
@@ -110,11 +117,7 @@ public class Game {
 	}
 
 	public boolean isGameOver() {
-		return turnCounter == 9;
-	}
-
-	public boolean isGameDead() {
-		return !player1.isOpen() && !player2.isOpen();
+		return turnCounter >= 9;
 	}
 
 	public boolean isGameWon() {
@@ -170,4 +173,6 @@ public class Game {
 			System.err.println("Error sending message");
 		}
 	}
+
+
 }
