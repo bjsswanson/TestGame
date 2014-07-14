@@ -42,8 +42,11 @@ public class DocClient {
                         e.printStackTrace();
                     }
                 }
+
             }, cec, new URI("ws://localhost:8025/websocket/xo"));
 	        messageLatch.await(100, TimeUnit.SECONDS);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
