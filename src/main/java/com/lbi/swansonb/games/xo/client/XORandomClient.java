@@ -3,7 +3,9 @@ package com.lbi.swansonb.games.xo.client;
 import com.lbi.swansonb.games.xo.server.Game;
 
 import javax.websocket.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -52,11 +54,13 @@ public class XORandomClient {
 
 	public static void main(String [] args){
 	    try {
-		    messageLatch = new CountDownLatch(1);
 		    WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 		    String uri = "ws://localhost:8025/websocket/xo";
 		    container.connectToServer(XORandomClient.class, URI.create(uri));
-            messageLatch.await(100, TimeUnit.SECONDS);
+
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	        System.out.println("Please press a key to stop the client.");
+	        reader.readLine();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -48,8 +48,6 @@ public class XOServer {
 
 	@OnMessage
     public String onMessage(String message, Session session) {
-		System.out.println("Recieved: " + message);
-
 		String id = session.getId();
 		Game game = getGame(id);
 

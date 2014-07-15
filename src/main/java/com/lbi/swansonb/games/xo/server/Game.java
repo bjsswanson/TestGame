@@ -56,6 +56,7 @@ public class Game {
 					return tieGame();
 				} else {
 					turn = getOtherPlayer();
+					turnCounter += 1;
 					sendMessage(turn, IT_IS_YOUR_TURN);
 					return PLEASE_WAIT;
 				}
@@ -68,12 +69,18 @@ public class Game {
 	private String winGame() {
 		sendMessage(turn, GAME_WIN);
 		sendMessage(getOtherPlayer(), GAME_LOST);
+		sendBoard(turn);
+		sendBoard(getOtherPlayer());
+		turnCounter = 9;
 		return GAME_OVER;
 	}
 
 	private String tieGame(){
 		sendMessage(player1, GAME_TIE);
 		sendMessage(player2, GAME_TIE);
+		sendBoard(player1);
+		sendBoard(player2);
+		turnCounter = 9;
 		return GAME_OVER;
 	}
 
@@ -174,5 +181,20 @@ public class Game {
 		}
 	}
 
+	public String letter(int i){
+		int player = game[i];
+		if(player == 1) {
+			return "X";
+		} else if(player == -1) {
+			return "O";
+		} else {
+			return " ";
+		}
+	}
 
+	public void sendBoard(Session session){
+		sendMessage(session, letter(0) + letter(1) + letter(2));
+		sendMessage(session, letter(3) + letter(4) + letter(5));
+		sendMessage(session, letter(6) + letter(7) + letter(8));
+	}
 }
