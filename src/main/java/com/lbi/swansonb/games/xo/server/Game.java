@@ -37,6 +37,7 @@ public class Game {
 		sendMessage(player1, YOU_ARE_NOW_IN_A_GAME);
 		sendMessage(player2, YOU_ARE_NOW_IN_A_GAME);
 		sendMessage(player1, IT_IS_YOUR_TURN);
+		sendMessage(player2, PLEASE_WAIT);
 	}
 
 	public String handleTurn(String message, Session session) {
